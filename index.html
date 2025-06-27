@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Vinicius Meier Trevisan</title>
+  <meta name="description" content="Portfólio de Vinicius Meier Trevisan, desenvolvedor back-end com projetos em Java, Python, MySQL e JavaScript." />
+  <meta name="keywords" content="desenvolvedor, back-end, java, python, mysql, javascript, portfolio" />
+  <meta name="author" content="Vinicius Meier Trevisan" />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg-color: #1a202c;
+      --card-bg: #2d3748;
+      --text-color: #e2e8f0;
+      --accent-color: #38b2ac;
+      --accent-color-hover: #4fd1c5;
+      --secondary-text: #a0aec0;
+      --border-color: #4a5568;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      --transition-fast: all 0.2s ease;
+      --transition-smooth: all 0.3s ease;
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #2d3748;
+      --accent-color: #38b2ac;
+      --accent-color-hover: #319795;
+      --secondary-text: #4a5568;
+      --border-color: #e2e8f0;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      padding-top: 100px;
+      transition: var(--transition-smooth);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 5px;
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent-color-hover);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-color-hover);
+    }
+
+    .nav-links a.active::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    header p {
+      font-size: 1.25rem;
+      color: var(--secondary-text);
+      margin-top: 0.5rem;
+      animation: fadeInUp 1s ease-out 0.3s backwards;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.2) rotate(15deg);
+      color: var(--accent-color-hover);
+    }
+
+    section {
+      margin-bottom: 3rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      border-radius: 16px;
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow);
+      animation: fadeIn 1s ease-out;
+    }
+
+    section h2 {
+      font-size: clamp(1.8rem, 5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    #about .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    #about .about-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    #about .about-item i {
+      color: var(--accent-color);
+      font-size: 1.75rem;
+      margin-top: 0.25rem;
+      min-width: 25px;
+    }
+
+    #about .about-item h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    #about .about-item p,
+    #about .about-item ul {
+      font-size: 1rem;
+      color: var(--secondary-text);
+      line-height: 1.7;
+    }
+
+    #about .about-item ul {
+      list-style-position: inside;
+      padding-left: 0.5rem;
+    }
+
+    #about .about-item ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    #about .about-item ul li::marker {
+      color: var(--accent-color);
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .tech-badge {
+      background-color: rgba(56, 178, 172, 0.1);
+      color: var(--accent-color-hover);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid rgba(56, 178, 172, 0.2);
+    }
+
+    .filter-container {
+      margin-bottom: 2rem;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background: none;
+      color: var(--secondary-text);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1.2rem;
+      margin: 0 0.25rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-weight: 600;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-color);
+      border-color: var(--accent-color);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: var(--bg-color);
+      font-weight: 700;
+    }
+
+    #project-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      transition: height 0.3s ease;
+    }
+
+    #project-list li {
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background-color: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    #project-list li.hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+      position: absolute;
+    }
+
+
+    #project-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent-color);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .project-desc {
+      font-size: 1rem;
+      color: var(--secondary-text);
+      margin: 0.5rem 0 1rem;
+      flex-grow: 1;
+    }
+
+    .project-link a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition-fast);
+    }
+
+    .project-link a:hover {
+      color: var(--accent-color-hover);
+      text-decoration: underline;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: var(--transition-smooth);
+    }
+
+    #contact input:focus,
+    #contact textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 8px rgba(56, 178, 172, 0.5);
+    }
+
+    #contact textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    #contact button {
+      background: var(--accent-color);
+      color: var(--bg-color);
+      border: none;
+      padding: 0.85rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: var(--transition-smooth);
+    }
+
+    #contact button:hover {
+      background: var(--accent-color-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(56, 178, 172, 0.3);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--secondary-text);
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: var(--transition-fast);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+      color: var(--accent-color-hover);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+        padding-top: 80px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--border-color);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      #about .about-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      #about .about-item i {
+        margin-bottom: 0.5rem;
+      }
+
+      #about .about-item ul {
+        text-align: left;
+        list-style-position: outside;
+        padding-left: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">Vinicius Trevisan</div>
+      <div class="nav-links">
+        <a href="#about" class="active">Sobre Mim</a>
+        <a href="#technologies">Tecnologias</a>
+        <a href="#projects">Projetos</a>
+        <a href="#contact">Contato</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <button class="theme-toggle" aria-label="Toggle theme">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <main>
+    <header>
+      <h1>Vinicius Meier Trevisan</h1>
+      <p>Desenvolvedor Back-end | Java • Python • MySQL • JavaScript</p>
+    </header>
+
+    <section id="about">
+      <h2><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Sobre Mim</h2>
+      <div class="about-content">
+        <div class="about-item">
+          <i class="fas fa-rocket"></i>
+          <div>
+            <h3>Quem Sou Eu</h3>
+            <p>Olá! Sou Vinicius, estudante de Engenharia de Software na PUC-PR, em busca da minha primeira oportunidade de estágio para crescer ao lado de profissionais experientes e contribuir com projetos reais.</p>
+            <p>Minha trajetória inclui um intercâmbio internacional, onde desenvolvi adaptabilidade, independência e fortes habilidades de comunicação — qualidades que hoje guiam meu caminho na tecnologia.</p>
+          </div>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-lightbulb"></i>
+          <div>
+            <h3>Minhas Forças e Mentalidade</h3>
+            <ul>
+              <li><strong>Raciocínio analítico:</strong> Encaro problemas com lógica, buscando soluções limpas e eficazes, com foco em desenvolvimento back-end.</li>
+              <li><strong>Sede de aprendizado:</strong> Estou sempre estudando Java e explorando novas tecnologias, boas práticas e padrões de projeto.</li>
+              <li><strong>Confiável e organizado:</strong> Levo dedicação, responsabilidade e atenção aos detalhes em tudo que faço.</li>
+              <li><strong>Comunicação global:</strong> Fluente em inglês, estou preparado para colaborar com equipes diversas, local e internacionalmente.</li>
+              <li><strong>Resiliência e Trabalho em Equipe:</strong> O futebol me ensinou sobre colaboração e resiliência, e o intercâmbio consolidou minha maturidade e adaptabilidade.</li>
+              <li><strong>Motivação e Visão:</strong> Minha paixão é usar a programação para criar soluções de software que melhorem vidas e resolvam desafios do mundo real.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-bullseye"></i>
+          <div>
+            <h3>Meus Objetivos</h3>
+            <p>Busco um estágio para aplicar meus conhecimentos, ganhar experiência prática e aprender com profissionais talentosos. Tenho especial interesse em back-end, aprofundando meu entendimento de arquitetura de sistemas, bancos de dados e APIs.</p>
+            <p>Meu objetivo é me tornar um desenvolvedor que contribui para soluções inovadoras com impacto positivo na sociedade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="technologies">
+      <h2><i class="fas fa-cogs" style="margin-right: 10px;"></i>Tecnologias</h2>
+      <div class="tech-grid">
+        <span class="tech-badge">Java</span>
+        <span class="tech-badge">PHP</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">MySQL</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">Git & GitHub</span>
+        <span class="tech-badge">APIs REST</span>
+        <span class="tech-badge">HTML & CSS</span>
+        <span class="tech-badge">Ollama</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2><i class="fas fa-project-diagram" style="margin-right: 10px;"></i>Projetos</h2>
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="java">Java</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="web">Web (PHP/JS)</button>
+      </div>
+      <ul id="project-list">
+        <li data-category="web">
+          <div class="project-title">Kindact</div>
+          <div class="project-desc">Sistema completo para ONGs e voluntários com autenticação de múltiplos perfis, banco de dados e uso de views SQL.</div>
+          <div class="project-link"><a href="https://github.com/ViniMTrevisan/kindact" target="_blank" rel="noopener noreferrer">Ver no GitHub <i class="fas fa-external-link-alt"></i></a></div>
+        </li>
+        <li data-category="web">
+          <div class="project-title">ImpactPro</div>
+          <div class="project-desc">Versão reduzida do Kindact com interface simplificada e funcionalidades principais de gestão de usuários.</div>
+          <div class="project-link"><a href="https://github.com/ViniMTrevisan/impact-pro" target="_blank" rel="noopener noreferrer">Ver no GitHub <i class="fas fa-external-link-alt"></i></a></div>
+        </li>
+        <li data-category="java">
+          <div class="project-title">Calculadora de Hipoteca (Java)</div>
+          <div class="project-desc">Calcula valor de parcelas com base em entrada do usuário. Projeto em Java com boas práticas e validações.</div>
+          <div class="project-link"><a href="https://github.com/ViniMTrevisan/java-estudos/tree/main/projetos-java/src/hipoteca" target="_blank" rel="noopener noreferrer">Ver no GitHub <i class="fas fa-external-link-alt"></i></a></div>
+        </li>
+        <li data-category="java">
+          <div class="project-title">FizzBuzz (Java)</div>
+          <div class="project-desc">Exercício de lógica condicional com foco em legibilidade e estruturação de código.</div>
+          <div class="project-link"><a href="https://github.com/ViniMTrevisan/java-estudos/tree/main/projetos-java/src/fizzbuzz" target="_blank" rel="noopener noreferrer">Ver no GitHub <i class="fas fa-external-link-alt"></i></a></div>
+        </li>
+        <li data-category="web">
+          <div class="project-title">Formulário com Upload</div>
+          <div class="project-desc">Tela de cadastro web que permite envio de imagem para o servidor (PHP/HTML).</div>
+          <div class="project-link"><a href="https://github.com/ViniMTrevisan/cadastro-responsivo" target="_blank" rel="noopener noreferrer">Ver no GitHub <i class="fas fa-external-link-alt"></i></a></div>
+        </li>
+        <li data-category="python">
+          <div class="project-title">API Python + Ollama</div>
+          <div class="project-desc">API criada em Python que se comunica com o modelo de linguagem Ollama para responder a requisições de texto.</div>
+          <div class="project-link"><a href="https://github.com/ViniMTrevisan/api-pergunta" target="_blank" rel="noopener noreferrer">Ver no GitHub <i class="fas fa-external-link-alt"></i></a></div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2><i class="fas fa-envelope-open-text" style="margin-right: 10px;"></i>Contato</h2>
+      <form action="https://formspree.io/f/xeokvoqo" method="POST">
+        <input type="text" id="name" name="name" required placeholder="Seu nome">
+        <input type="email" id="email" name="email" required placeholder="Seu email">
+        <textarea id="message" name="message" required placeholder="Sua mensagem"></textarea>
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="mailto:vinimtrevisan@gmail.com">vinimtrevisan@gmail.com</a></p>
+    <p>
+      <a href="https://www.linkedin.com/in/vinicius-meier-trevisan-741b66329/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+      <a href="https://github.com/ViniMTrevisan" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.querySelector('.theme-toggle');
+      const body = document.body;
+
+      const applyTheme = (theme) => {
+        body.setAttribute('data-theme', theme);
+        themeToggle.innerHTML = `<i class="fas fa-${theme === 'light' ? 'moon' : 'sun'}"></i>`;
+        localStorage.setItem('theme', theme);
+      };
+
+      themeToggle.addEventListener('click', () => {
+        const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+      });
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+      const filterContainer = document.querySelector('.filter-container');
+      const projectList = document.querySelector('#project-list');
+      if (filterContainer && projectList) {
+        const projects = Array.from(projectList.children);
+        filterContainer.addEventListener('click', (e) => {
+          if (!e.target.matches('.filter-btn')) return;
+
+          filterContainer.querySelector('.active').classList.remove('active');
+          e.target.classList.add('active');
+
+          const filter = e.target.dataset.filter;
+          projects.forEach(project => {
+            const category = project.dataset.category;
+            const shouldShow = filter === 'all' || category === filter;
+            project.classList.toggle('hidden', !shouldShow);
+            project.style.position = shouldShow ? 'static' : 'absolute';
+          });
+        });
+      }
+
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      const links = document.querySelectorAll('.nav-links a');
+      const nav = document.querySelector('nav');
+
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const isOpened = navLinks.classList.contains('active');
+        hamburger.innerHTML = isOpened ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        hamburger.setAttribute('aria-expanded', isOpened);
+      });
+
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+
+          if (targetSection) {
+            const navHeight = nav.offsetHeight;
+            const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - navHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+
+          if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      const sections = document.querySelectorAll('section');
+      const updateActiveLink = () => {
+        const navHeight = nav.offsetHeight;
+        let currentSectionId = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - navHeight - 50;
+          if (window.scrollY >= sectionTop) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+        
+        // CORREÇÃO: Verifica se o usuário chegou ao final da página
+        const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+
+        links.forEach(link => {
+          link.classList.remove('active');
+        });
+
+        if (isAtBottom) {
+          // Se estiver no final, força a ativação do último link ('#contact')
+          const lastLink = document.querySelector('.nav-links a[href="#contact"]');
+          if (lastLink) {
+            lastLink.classList.add('active');
+          }
+        } else if (currentSectionId) {
+          // Caso contrário, usa a lógica normal
+          const activeLink = document.querySelector(`.nav-links a[href="#${currentSectionId}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+        }
+      };
+
+      window.addEventListener('scroll', updateActiveLink);
+      window.addEventListener('resize', updateActiveLink);
+      updateActiveLink();
+    });
+  </script>
+</body>
+</html>
